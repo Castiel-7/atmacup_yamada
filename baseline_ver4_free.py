@@ -63,7 +63,7 @@ for fold, (train_index, val_index) in enumerate(skf.split(train_df, train_df['sc
 train_df = train_df.drop(columns=['score_discrete'])
 
 #ここより上は修正しない方が良いよ！------------------------------------------------------------------------------------------------------------------------------------
-
+#https://docs.google.com/presentation/d/1LCiykp3wMK-tyz19WCkd0Q_fQ5qoD1IBA4HoNfd-YpE/edit#slide=id.p
 # Apply the function to the duration column　いろんな特徴量を追加しているよ！(実際に使うかは別として)
 anime_df['duration'] = anime_df['duration'].apply(extract_duration_in_minutes)
 # Apply the function to the episodes column　いろんな特徴量を追加しているよ！(実際に使うかは別として)
