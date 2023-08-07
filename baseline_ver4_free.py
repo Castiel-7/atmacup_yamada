@@ -72,6 +72,7 @@ anime_df['episodes'] = anime_df['episodes'].apply(convert_episodes_to_int)
 anime_df['total_duration'] = anime_df['duration'] * anime_df['episodes']
 
 # Create a new feature based on the quarter of the year　いろんな特徴量を追加しているよ！(実際に使うかは別として)
+https://docs.google.com/presentation/d/1LCiykp3wMK-tyz19WCkd0Q_fQ5qoD1IBA4HoNfd-YpE/edit#slide=id.p
 anime_df[["aired_start", "aired_end"]] = anime_df["aired"].str.split(" to ", expand=True)
 # Convert these new columns to datetime format　いろんな特徴量を追加しているよ！(実際に使うかは別として)
 anime_df["aired_start"] = pd.to_datetime(anime_df["aired_start"], errors='coerce')
