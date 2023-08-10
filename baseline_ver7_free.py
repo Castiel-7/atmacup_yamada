@@ -231,3 +231,29 @@ for fold in range(5):
     submission_df['score'] += test_pred_lgb / 5
 
 submission_df.to_csv('submission_baseline_ver7_30.csv', index=False)
+
+WITH Rank1 AS (
+    SELECT id, 
+           RANK() OVER (ORDER BY score1 DESC) as rank1
+    FROM your_table
+),
+
+Rank2 AS (
+    SELECT id, 
+           RANK() OVER (ORDER BY score2 DESC) as rank2
+    FROM your_table
+),
+
+CombinedRanks AS (
+    SELECT r1.id, 
+           r1.rank1, 
+           r2.rank2, 
+           (r1.rank1 + r2.rank2) as total_rank
+    FROM Rank1 r1
+    JOIN Rank2 r2 ON r1.id = r2.id
+)
+
+SELECT *,
+       RANK() OVER (ORDER BY total_rank ASC) as final_rank
+FROM CombinedRanks
+ORDER BY final_rank;
